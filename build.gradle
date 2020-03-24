@@ -4,15 +4,6 @@ plugins {
     id 'java'
 }
 
-
-jar {
-    manifest {
-        attributes(
-                "Main-Class": "io.pivotal.pal.tracker.PalTrackerApplication"
-        )
-    }
-}
-
 repositories {
     mavenCentral()
 }
@@ -22,6 +13,11 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    //testCompile group: 'org.assertj', name: 'assertj-core', version: '3.9.0'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 bootRun.environment([
@@ -31,7 +27,3 @@ bootRun.environment([
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
 ])
-
-test {
-    useJUnitPlatform()
-}
